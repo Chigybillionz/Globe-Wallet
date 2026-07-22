@@ -190,6 +190,27 @@ export default function ConvertPage() {
       </div>
 
       <div className="px-4 pb-4 space-y-4">
+        {/* Slippage Settings Panel */}
+        {showSlippageSettings && (
+          <Card className="p-4">
+            <div className="space-y-3">
+              <Label className="text-sm font-medium">Slippage Tolerance</Label>
+              <div className="flex gap-2">
+                {[0.1, 0.5, 1].map((tol) => (
+                  <Button
+                    key={tol}
+                    type="button"
+                    variant={slippageTolerance === tol ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSlippageTolerance(tol)}
+                  >
+                    {tol}%
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </Card>
+        )}
         {/* Loading state */}
         {isLoadingRates && (
           <Card className="p-4">
@@ -390,7 +411,7 @@ export default function ConvertPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Processing Fee</span>
-                  <span>0.1%</span>
+                  <span>Free</span>
                 </div>
                 {quote && (
                   <div className="flex justify-between text-xs text-muted-foreground pt-0.5">
@@ -416,6 +437,9 @@ export default function ConvertPage() {
                     {calculateNetReceived(toAmount).toFixed(6)} {toCurrency}
                   </span>
                 </div>
+              </div>
+              <div className="text-[10px] text-muted-foreground text-center mt-2 opacity-80">
+                Quote updates in 30s
               </div>
             </div>
           </Card>

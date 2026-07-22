@@ -84,7 +84,11 @@ jest.mock('recharts', () => {
   const passthrough =
     (name: string) =>
     ({ children, ...rest }: React.PropsWithChildren<Record<string, unknown>>) =>
-      React.createElement(name === 'ResponsiveContainer' ? 'div' : name, rest, children)
+      React.createElement(
+        name === 'ResponsiveContainer' ? 'div' : name,
+        name === 'ResponsiveContainer' ? { ...rest, 'data-testid': 'recharts-responsive-container' } : rest,
+        children
+      )
 
   return {
     ResponsiveContainer: passthrough('ResponsiveContainer'),

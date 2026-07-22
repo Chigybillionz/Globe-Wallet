@@ -28,7 +28,7 @@ export function useTransactions() {
       return data
     } catch (err) {
       setLoading(false)
-      throw err
+      captureError(err as Error)
     }
   }, [wallet])
 

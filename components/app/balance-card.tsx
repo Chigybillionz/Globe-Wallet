@@ -109,7 +109,7 @@ export function BalanceCard() {
                 <p className="text-xs text-primary-foreground/80">
                   {fiatWallet.label || `${fiatWallet.code} Wallet`} balance
                 </p>
-                <p className="mt-1 text-4xl font-bold tracking-tight text-balance" data-testid="total-value">
+                <p className="mt-1 text-4xl font-bold tracking-tight text-balance" data-testid="total-value" aria-live="polite" aria-atomic="true">
                   {formatMoney(fiatWallet.balance, fiatWallet.code, hidden)}
                 </p>
 
